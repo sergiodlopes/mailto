@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MailTo jQuery Plugin - Examples</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1>MailTo</h1>
+            <p>Simple jQuery plugin to hide email addresses from spambots. If the element is <code>&lt;a&gt;</code>, it will add the attribute href with respective <code>mailto</code>.</p>
+            
+            <hr />
+            
+            <h3>Javascript</h3>
+            <div class="highlight">
+                <code>
+                    $('.email').mailto();
+                </code>
+            </div>          
+            <p>The plugin to avoid having to set <code>data-host</code> in multiple email addresses, you can set the default host in the plugin:</p>
+            <div class="highlight">
+                <code>
+                    $('.email').mailto({<br>
+                        host:'domain.com'<br>
+                    });
+                </code>
+            </div>          
+            <p>Please note that if you choose this method, it will override <code>data-host</code> value on all emails.</p>
+            
+            <hr />
+            
+            <h3>HTML</h3>
+            
+            <h4>Basic <small>Account name only</small></h4>            
+            <div class="bs-example">
+                <a class="email" data-account="my.name"></a>
+            </div>
+            <div class="highlight">
+                <code>&lt;a class=&quot;email&quot; data-account=&quot;my.name&quot;&gt;&lt;/a&gt;</code>
+            </div>
+            
+            <hr />
+            
+            <h4>Setting host <small>Server host</small></h4>            
+            <div class="bs-example">
+                <a class="email" data-account="my.name" data-host="domain.com"></a>
+            </div>
+            <div class="highlight">
+                <code>&lt;a class=&quot;email&quot; data-account=&quot;my.name&quot; data-host=&quot;domain.com&quot;&gt;&lt;/a&gt;</code>
+            </div>
+            
+            <hr />
+            
+            <h4>Setting subject <small>Allows you to set the email subject</small></h4>            
+            <div class="bs-example">
+                <a class="email" data-account="my.name" data-host="domain.com" data-subject="Information Request"></a>
+            </div>
+            <div class="highlight">
+                <code>&lt;a class=&quot;email&quot; data-account=&quot;my.name&quot; data-host=&quot;domain.com&quot; data-subject=&quot;Information Request&quot;&gt;&lt;/a&gt;</code>
+            </div>
+            
+            <hr />
+            
+            <h4>Without 'mailto' hyperlink <small>Not setting the href attribute</small></h4>
+            <p>If the element is not a <code>&lt;a&gt;</code>, it will not set the href attribute.</p>
+            <div class="bs-example">
+                <span class="email" data-account="my.name" data-host="domain.com"></span>
+            </div>
+            <div class="highlight">
+                <code>&lt;span class=&quot;email&quot; data-account=&quot;my.name&quot; data-host=&quot;domain.com&quot;&gt;&lt;/span&gt;</code>
+            </div>
+            
+            <hr />
+            
+            <h4>Using and icon <small>Respects the icon existence</small></h4>            
+            <div class="bs-example">
+                <a class="email" data-account="my.name" data-host="domain.com" data-subject="Information Request"><i class="glyphicon glyphicon-envelope"></i></a>
+            </div>
+            <div class="highlight">
+                <code>&lt;a class=&quot;email&quot; data-account=&quot;my.name&quot; data-host=&quot;domain.com&quot; data-subject=&quot;Information Request&quot;&gt;&lt;i class=&quot;glyphicon glyphicon-envelope&quot;&gt;&lt;/i&gt;&lt;/a&gt;</code>
+            </div>
+            
+            <hr />
+            
+            <h4>Literal <small>If you prefer literal email addresses...</small></h4>
+            <div class="bs-example">
+                <a class="email">my dot name at domain dot com</a>
+            </div>
+            <div class="highlight">
+                <code>&lt;a class=&quot;email&quot;&gt;my dot name at domain dot com&lt;/a&gt;</code>
+            </div>
+        </div>
+               
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../jquery.mailto.js"></script>
+        
+        <script>
+            $('.email').mailto({
+                //host:'domain.com'  // This will override the data-host attribute  
+            });
+        </script>        
+    </body>
+</html>

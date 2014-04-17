@@ -1,5 +1,5 @@
 /**
- * Simple Anti-spambot email address
+ * Simple jQuery plugin to hide email addresses from bot harvesters
  *
  *  // Javascript
  *  $('a.email').mailto();
@@ -23,18 +23,26 @@
  *  <a class="email" href="mailto:my.name@ispprovider.com"><i class="icon"> my.name@ispprovider.com</a>
  *
  */
-    $.fn.mailto = function(){
+    $.fn.mailto = function(options){        
+        options = $.extend({}, {
+            host:false
+        }, options);
+        
         $(this).each(function(){
             var $elem = $(this);
+            // Get email address
             var $emailAddress = function(){
-                var $email = '';                
+                var $email,$host = '';
+                
+                // Set host
+                $host = options.host;
+                if(!$host){
+                    $host = $elem.attr('data-host') ? $elem.attr('data-host') : window.location.hostname.replace('www.','')
+                }
+                           
+                // Email account name its in the attribute
                 if($elem.attr('data-account')){
-                    var $email = $elem.attr('data-account') + '@';                    
-                    if($elem.attr('data-host')){
-                        $email += $elem.attr('data-host');
-                    } else {
-                        $email += window.location.hostname.replace('www.','');
-                    }
+                    return $elem.attr('data-account') + '@' + $host;                
                 } else {
                     var $text = $elem.text();
                     $elem.contents().filter(function(){ return this.nodeType != 1; }).remove();
