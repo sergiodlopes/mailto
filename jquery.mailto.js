@@ -1,31 +1,20 @@
 /**
+ * jQuery MailTo
  * Simple jQuery plugin to hide email addresses from bot harvesters
  *
- *  // Javascript
- *  $('a.email').mailto();
- *  
- *  Example 1:
- *  // HTML
- *  <a class="email" data-account="my.name" data-host="ispprovider.com" data-subject="Information Request"></a>
- *  // Result
- *  <a class="email" href="mailto:my.name@ispprovider.com?subject=Information%20Request">my.name@ispprovider.com</a>
- *  
- *  Example 2:
- *  // HTML
- *  <a class="email" data-account="my.name"></a>
- *  // Result
- *  <a class="email" href="mailto:my.name@currenthost.com">my.name@currenthost.com</a>
- *  
- *  Example 3:
- *  // HTML
- *  <a class="email"><i class="icon"></i> my dot name at ispprovider dot com</a>
- *  // Result
- *  <a class="email" href="mailto:my.name@ispprovider.com"><i class="icon"> my.name@ispprovider.com</a>
+ * Depends:
+ * jquery.js 1.7+
  *
+ * Demo:
+ * http://jquery.sergiodinislopes.pt/mailto/
+ * 
+ * Github:
+ * https://github.com/sergiodlopes/mailto/ 
  */
     $.fn.mailto = function(options){        
         options = $.extend({}, {
-            host:false
+            host: false, // Default host
+            prepend: false // Prepend email address to element
         }, options);
         
         $(this).each(function(){
@@ -52,7 +41,13 @@
             }
             
             var $email = $emailAddress();
-            $elem.append(' ' + $email);
+            // Prepend email address to element?
+            if(options.prepend){
+                $elem.prepend($email + ' ');
+            } else {
+                $elem.append(' ' + $email);
+            }
+            // If is <a>
             if($elem.is('a')){
                 var $mailto = 'mailto:' + $email;
                 if($elem.attr('data-subject')){

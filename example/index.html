@@ -77,9 +77,26 @@
             
             <hr />
             
-            <h4>Using and icon <small>Respects the icon existence</small></h4>            
+            <h4>With child element</h4>
+            <p>Append email to <code>&lt;a&gt;</code></p>
             <div class="bs-example">
                 <a class="email" data-account="my.name" data-host="domain.com" data-subject="Information Request"><i class="glyphicon glyphicon-envelope"></i></a>
+            </div>
+            <div class="highlight">
+                <code>&lt;a class=&quot;email&quot; data-account=&quot;my.name&quot; data-host=&quot;domain.com&quot; data-subject=&quot;Information Request&quot;&gt;&lt;i class=&quot;glyphicon glyphicon-envelope&quot;&gt;&lt;/i&gt;&lt;/a&gt;</code>
+            </div>
+            
+            <p>If you set the option <code>prepend</code> to <code>true</code>, email is inserted left from the existing child elements.</p>
+            <div class="highlight">
+                <code>
+                    $('.email').mailto({<br>
+                        prepend:true<br>
+                    });
+                </code>
+            </div>          
+            
+            <div class="bs-example">
+                <a class="prepend-email" data-account="my.name" data-host="domain.com" data-subject="Information Request"><i class="glyphicon glyphicon-envelope"></i></a>
             </div>
             <div class="highlight">
                 <code>&lt;a class=&quot;email&quot; data-account=&quot;my.name&quot; data-host=&quot;domain.com&quot; data-subject=&quot;Information Request&quot;&gt;&lt;i class=&quot;glyphicon glyphicon-envelope&quot;&gt;&lt;/i&gt;&lt;/a&gt;</code>
@@ -102,7 +119,11 @@
         
         <script>
             $('.email').mailto({
-                //host:'domain.com'  // This will override the data-host attribute  
+                //host:'domain.com'  // This will override the data-host attribute
+            });
+            $('.prepend-email').mailto({
+                prepend:true
+                
             });
         </script>        
     </body>
