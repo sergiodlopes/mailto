@@ -3,6 +3,10 @@ MailTo
 
 Simple jQuery plugin to hide email addresses from spambots. If the element is `<a>`, it will add the attribute href with respective `mailto`.
 
+## Demo ##
+
+Check out the [demo page](http://projects.sergiodinislopes.pt/mailto/example/).
+
 ## Javascript ##
 
     $('.email').mailto();

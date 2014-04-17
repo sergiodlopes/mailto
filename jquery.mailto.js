@@ -6,7 +6,7 @@
  * jquery.js 1.7+
  *
  * Demo:
- * http://jquery.sergiodinislopes.pt/mailto/
+ * http://projects.sergiodinislopes.pt/mailto/example/
  * 
  * Github:
  * https://github.com/sergiodlopes/mailto/ 
