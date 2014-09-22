@@ -13,45 +13,49 @@
  */
     $.fn.mailto = function(options){        
         options = $.extend({}, {
-            host: false, // Default host
+            text:false, // By default link text is the email address
+            host: window.location.hostname.replace('www.',''), // Default host
+            account: false, // Account
             prepend: false // Prepend email address to element
         }, options);
         
         $(this).each(function(){
-            var $elem = $(this);
+            var $elem = $(this);            
+            var $options = $.extend({}, options, $elem.data());          
+        
             // Get email address
             var $emailAddress = function(){
-                var $email,$host = '';
-                
-                // Set host
-                $host = options.host;
-                if(!$host){
-                    $host = $elem.attr('data-host') ? $elem.attr('data-host') : window.location.hostname.replace('www.','')
-                }
+                var $email = '';
                            
                 // Email account name its in the attribute
-                if($elem.attr('data-account')){
-                    return $elem.attr('data-account') + '@' + $host;                
+                if($options.account){
+                    return $options.account + '@' + $options.host;                
                 } else {
                     var $text = $elem.text();
-                    $elem.contents().filter(function(){ return this.nodeType != 1; }).remove();
+                    $elem.contents().filter(function(){
+                        return this.nodeType != 1;
+                    }).remove();
                     return $text.replace(' at ', '@').split(' dot ').join('.');                    
                 }
                 return $email;
             }
             
             var $email = $emailAddress();
+            
+            if(!$options.text){
+                $options.text = $email;
+            }
             // Prepend email address to element?
-            if(options.prepend){
-                $elem.prepend($email + ' ');
+            if($options.prepend){
+                $elem.prepend($options.text + ' ');
             } else {
-                $elem.append(' ' + $email);
+                $elem.append(' ' + $options.text);
             }
             // If is <a>
             if($elem.is('a')){
                 var $mailto = 'mailto:' + $email;
-                if($elem.attr('data-subject')){
-                    $mailto += '?subject=' + encodeURIComponent( $elem.attr('data-subject') );
+                if($options.subject){
+                    $mailto += '?subject=' + encodeURIComponent( $options.subject );
                 }                     
                 $elem.attr('href', $mailto);
             }

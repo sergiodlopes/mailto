@@ -41,6 +41,16 @@ If you prefer literal email addresses...
 
 ----------
 
+### With link text set ###
+
+    <a class="email" data-account="my.name" data-host="domain.com" data-text="My Email"></a>
+
+**... will result in...**
+
+    <a class="email" href="mailto:my.name@domain.com">My Email</a>
+
+----------
+
 ### With hostname set ###
 
     <a class="email" data-account="my.name" data-host="domain.com"></a>
