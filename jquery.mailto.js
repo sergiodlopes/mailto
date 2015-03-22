@@ -11,7 +11,8 @@
  * Github:
  * https://github.com/sergiodlopes/mailto/ 
  */
-    $.fn.mailto = function(options){        
+(function($) {
+    $.fn.mailto = function(options) {        
         options = $.extend({}, {
             text:false, // By default link text is the email address
             host: window.location.hostname.replace('www.',''), // Default host
@@ -19,20 +20,20 @@
             prepend: false // Prepend email address to element
         }, options);
         
-        $(this).each(function(){
+        return this.each(function() {
             var $elem = $(this);            
             var $options = $.extend({}, options, $elem.data());          
         
             // Get email address
-            var $emailAddress = function(){
+            var $emailAddress = function() {
                 var $email = '';
                            
                 // Email account name its in the attribute
-                if($options.account){
+                if($options.account) {
                     return $options.account + '@' + $options.host;                
                 } else {
                     var $text = $elem.text();
-                    $elem.contents().filter(function(){
+                    $elem.contents().filter(function() {
                         return this.nodeType != 1;
                     }).remove();
                     return $text.replace(' at ', '@').split(' dot ').join('.');                    
@@ -60,4 +61,5 @@
                 $elem.attr('href', $mailto);
             }
         });    
-    };    
+    };
+})(jQuery);
