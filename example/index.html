@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Sérgio Dinis Lopes">
-        <title>MailTo jQuery Plugin</title>
+        <title>jQuery.MailTo Plugin</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="style.css">
@@ -28,7 +28,7 @@
                     $('.email').mailto();
                 </code>
             </div>          
-            <p>The plugin to avoid having to set <code>data-host</code> in multiple email addresses, you can set the default host in the plugin:</p>
+            <p>To avoid having to set <code>data-host</code> in multiple email addresses, you can set the default <code>host</code> in the plugin configuration:</p>
             <div class="highlight">
                 <code>
                     $('.email').mailto({<br>
@@ -36,7 +36,6 @@
                     });
                 </code>
             </div>          
-            <p>Please note that if you choose this method, it will override <code>data-host</code> value on all emails.</p>
             
             <hr />
             

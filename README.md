@@ -1,4 +1,4 @@
-MailTo
+jQuery.MailTo
 ======
 
 Simple jQuery plugin to hide email addresses from spambots. If the element is `<a>`, it will add the attribute href with respective `mailto`.
@@ -17,7 +17,6 @@ The plugin to avoid having to set `data-host` in multiple email addresses, you c
 		host:'domain.com'
 	});
 
-Please note that if you choose this method, it will override `data-host` value on all emails.
 
 ## HTML ##
 
