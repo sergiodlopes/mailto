@@ -15,20 +15,20 @@
     $.fn.mailto = function(options) {        
         return this.each(function() {
             var $elem = $(this);            
-            var options = $.extend({
-                text:false, // By default link text is the email address
+            var _options = $.extend({
+                text: false, // By default link text is the email address
                 host: window.location.hostname.replace('www.',''), // Default host
                 account: false, // Account
-                prepend: false // Prepend email address to element
-            }, options, $elem.data());          
-        
+                prepend: false // Prepend email address
+            }, options, $elem.data());
+            
             // Get email address
             var $emailAddress = function() {
                 var $email = '';
                            
                 // Email account name its in the attribute
-                if(options.account) {
-                    return options.account + '@' + options.host;                
+                if(_options.account) {
+                    return _options.account + '@' + _options.host;                
                 } else {
                     var $text = $elem.text();
                     $elem.contents().filter(function() {
@@ -41,20 +41,20 @@
             
             var $email = $emailAddress();
             
-            if(!options.text){
-                options.text = $email;
+            if(!_options.text){
+                _options.text = $email;
             }
             // Prepend email address to element?
-            if(options.prepend){
-                $elem.prepend(options.text + ' ');
+            if(_options.prepend){
+                $elem.prepend(_options.text + ' ');
             } else {
-                $elem.append(' ' + options.text);
+                $elem.append(' ' + _options.text);
             }
             // If is <a>
             if($elem.is('a')){
                 var $mailto = 'mailto:' + $email;
-                if(options.subject){
-                    $mailto += '?subject=' + encodeURIComponent( options.subject );
+                if(_options.subject){
+                    $mailto += '?subject=' + encodeURIComponent( _options.subject );
                 }
                 $elem.attr('href', $mailto);
             }
